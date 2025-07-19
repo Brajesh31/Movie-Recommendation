@@ -1,0 +1,9 @@
+requests
+scikit-learn
+pandas
+nltk
+flask
+fuzzywuzzy
+googletrans==4.0.0-rc1
+python-Levenshtein
+gunicorn

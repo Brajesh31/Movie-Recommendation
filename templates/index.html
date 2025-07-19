@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #Header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #body {
+            margin-left: 10%;
+            margin-right: 20%;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 180px;
+            height: 250px;
+            margin-right: 20px;
+        }
+
+        div.movie-details {
+            flex-grow: 1;
+        }
+
+        h3 {
+            color: #141414;
+            margin: 0;
+        }
+
+        p {
+            color: #353535;
+            margin: 5px 0;
+            font-size: 17px;
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='Header'>
+        <h1>Movie Recommendation</h1>
+        <form action="/" method="post">
+            <input type="text" id="movie" name="movie" placeholder="Enter a Movie Title"><br>
+            <input type="submit" id="submit" value="Submit">
+        </form>
+    </div>
+    <div id='body'>
+        {% if recommendations %}
+        <h2>Top 10 Recommendation</h2>
+        <ul>
+            {% for movie in recommendations %}
+            <li>
+                <img src="https://image.tmdb.org/t/p/original//{{ movie.Image }}" alt="{{ movie.Title }}">
+                <div class="movie-details">
+                    <h3>{{ translate_to_english(movie.Title) }}</h3>
+                    <p><strong>Language:</strong> {{ movie.Language }}</p>
+                    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                    <p><strong>Overview:</strong> {{ movie.overview }}</p>
+                    <p><strong>Media Type:</strong> {{ movie.media_type }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>
